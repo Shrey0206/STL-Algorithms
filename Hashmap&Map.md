@@ -114,14 +114,7 @@ for (auto it = m.begin(); it != m.end(); ) {
 | `erase(m.begin())` | remove the smallest key | `om.erase(om.begin());` |
 | `erase(prev(m.end()))` | remove the largest key | `om.erase(prev(om.end()));` |
 
-**Only for `unordered_map`:**
 
-| Function | What it does | Example |
-|---|---|---|
-| `reserve(n)` | allocate buckets for n elements | `m.reserve(n);` |
-| `load_factor()` | elements / buckets | `m.load_factor();` |
-| `bucket_count()` | number of buckets | `m.bucket_count();` |
-| `max_load_factor(f)` | set when it rehashes (default 1.0) | `m.max_load_factor(0.25);` |
 
 Passing maps to functions:
 
@@ -217,3 +210,4 @@ unordered_map<long long, int, Hash> safe;
 ```
 
 Classic problems built on maps: two sum, group anagrams, longest substring without repeating characters, subarray sum equals k (prefix sum + map), top K frequent elements, LRU cache (map + list), first non-repeating character, intervals / calendar problems (ordered map with `lower_bound`).
+s

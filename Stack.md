@@ -87,15 +87,7 @@ vector<int> v = sv.top();               // copy the top vector first if you stil
 sv.pop();
 ```
 
-### Print all elements (empties it, so use a copy)
 
-```cpp
-stack<int> tmp = st;                    // copy, so st stays intact
-while (!tmp.empty()) {
-    cout << tmp.top() << ' ';           // prints from top to bottom
-    tmp.pop();
-}
-```
 
 ## 3. Important functions
 
@@ -174,19 +166,6 @@ for (int v : st) cout << v << ' ';      // print from bottom to top
 ### Common patterns
 
 ```cpp
-// balanced brackets: ()[]{}
-bool valid(const string &s) {
-    stack<char> st;
-    for (char c : s) {
-        if (c == '(' || c == '[' || c == '{') st.push(c);
-        else {
-            if (st.empty()) return false;
-            char o = st.top(); st.pop();
-            if ((c == ')' && o != '(') || (c == ']' && o != '[') || (c == '}' && o != '{')) return false;
-        }
-    }
-    return st.empty();                          // leftover opening brackets = invalid
-}
 
 // next greater element to the right (monotonic stack), -1 if none
 vector<int> nextGreater(const vector<int> &v) {
@@ -203,43 +182,6 @@ vector<int> nextGreater(const vector<int> &v) {
     return res;
 }
 
-// daily temperatures: days to wait for a warmer day
-vector<int> wait(const vector<int> &t) {
-    int n = t.size();
-    vector<int> res(n, 0);
-    stack<int> st;
-    for (int i = 0; i < n; i++) {
-        while (!st.empty() && t[st.top()] < t[i]) {
-            res[st.top()] = i - st.top();
-            st.pop();
-        }
-        st.push(i);
-    }
-    return res;
-}
-
-// min stack: push, pop and getMin all O(1)
-stack<int> st, mn;
-void push(int x) { st.push(x); if (mn.empty() || x <= mn.top()) mn.push(x); }
-void pop()       { if (st.top() == mn.top()) mn.pop(); st.pop(); }
-int getMin()     { return mn.top(); }
-
-// evaluate postfix (reverse polish notation): {"2","1","+","3","*"} = 9
-int evalRPN(const vector<string> &tokens) {
-    stack<int> st;
-    for (const string &t : tokens) {
-        if (t == "+" || t == "-" || t == "*" || t == "/") {
-            int b = st.top(); st.pop();         // right operand comes off first
-            int a = st.top(); st.pop();
-            if (t == "+") st.push(a + b);
-            else if (t == "-") st.push(a - b);
-            else if (t == "*") st.push(a * b);
-            else st.push(a / b);
-        } else st.push(stoi(t));
-    }
-    return st.top();
-}
-
 // reverse a string with a stack
 string rev(const string &s) {
     stack<char> st;
@@ -249,16 +191,5 @@ string rev(const string &s) {
     return r;
 }
 
-// iterative DFS on a graph
-vector<bool> vis(n, false);
-stack<int> dfs;
-dfs.push(start);
-while (!dfs.empty()) {
-    int u = dfs.top(); dfs.pop();
-    if (vis[u]) continue;
-    vis[u] = true;
-    for (int w : adj[u]) if (!vis[w]) dfs.push(w);
-}
 ```
 
-Classic problems built on stacks: valid parentheses, min stack, next greater element, daily temperatures, evaluate reverse polish notation, largest rectangle in histogram, trapping rain water, remove adjacent duplicates, decode string (`3[a]2[bc]`), implement queue using stacks, implement stack using queues, basic calculator, simplify path, asteroid collision, iterative tree traversals (inorder, preorder, postorder).

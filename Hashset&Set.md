@@ -81,11 +81,6 @@ s.erase(it);                       // remove by iterator, returns the next itera
 s.erase(s.begin(), s.end());       // remove a range
 s.clear();                         // remove everything
 
-// erase while looping (erase invalidates `it`, so use its return value)
-for (auto it = s.begin(); it != s.end(); ) {
-    if (*it % 2 == 0) it = s.erase(it);
-    else ++it;
-}
 ```
 
 ## 3. Important functions
