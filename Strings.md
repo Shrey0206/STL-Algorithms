@@ -99,22 +99,6 @@ s.erase(remove(s.begin(), s.end(), c), s.end());
 | `starts_with` / `ends_with` | prefix / suffix check (C++20) | `s.starts_with("ab");` |
 | `stringstream` | split or parse text | see patterns below |
 
-Searching:
-
-```cpp
-size_t p = s.find("ab");
-if (p != string::npos) cout << "found at " << p;     // always compare with npos
-
-// all occurrences
-for (size_t p = s.find("ab"); p != string::npos; p = s.find("ab", p + 1))
-    cout << p << ' ';
-```
-
-Case change on the whole string:
-
-```cpp
-transform(s.begin(), s.end(), s.begin(), [](unsigned char c) { return tolower(c); });
-```
 
 Passing strings to functions:
 
