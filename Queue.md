@@ -1,4 +1,4 @@
-# Queue (queue) and Deque (deque)
+# Queue and Deque 
 
 ## 1. What is it
 
@@ -42,7 +42,6 @@ deque<int> dq = {1, 2, 3};              // with values
 deque<int> dq2(dq);                     // copy of dq (or dq2 = dq)
 deque<int> dq3(v.begin(), v.end());     // from a vector (or any range)
 deque<pair<int,int>> dp;                // deque of pairs
-deque<deque<int>> d2(n, deque<int>(m, 0)); // 2D, n x m, all 0
 ```
 
 ### Insert
